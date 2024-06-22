@@ -1,0 +1,62 @@
+﻿<div class="row pt-3">
+    <div class="input-group mb-3">
+        <label class="input-group-text"
+               for="inputTask">
+            Task
+        </label>
+
+        <input @ref="_taskInput"
+               type="text"
+               id="inputTask"
+               class="form-control"
+               @bind-value="@_taskName"
+               @attributes="InputParameters"
+        />
+    </div>
+ 
+    <div class="input-group mb-3">
+        <label class="input-group-text"
+               for="priorityList">
+            Priority
+        </label>
+
+        <select class="form-select" @bind="_selectedPriority">
+            @foreach (var priority in Enum.GetValues(typeof(TaskPriority)))
+            {
+                <option value="@priority.ToString()">@priority</option>
+            }
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="button"
+                class="btn btn-outline-success"
+                @onclick="OnClickHandlerAsync">
+            Save Task
+        </button>
+    </div>
+</div>
+
+@code{
+    private string? _taskName;
+    private TaskPriority _selectedPriority = TaskPriority.Medium;
+
+    private ElementReference _taskInput;
+    private ElementReference _priorityList;
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? InputParameters { get; set; }
+    
+    [Parameter] 
+    public EventCallback<TaskEventArgs> OnSubmit { get; set; }
+    private async Task OnClickHandlerAsync()
+    {
+        if (!string.IsNullOrWhiteSpace(_taskName))
+        {
+            var taskEventArgs = new TaskEventArgs(_taskName, _selectedPriority);
+            await OnSubmit.InvokeAsync(taskEventArgs);
+            _taskName = null;
+            await _taskInput.FocusAsync();
+        }
+    }
+}

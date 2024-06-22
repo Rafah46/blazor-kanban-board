@@ -1,0 +1,11 @@
+.navbar-brand { 
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    padding: .75rem;
+    border: 1px solid darkgrey;
+    border-radius: 15px;    
+}
+
+

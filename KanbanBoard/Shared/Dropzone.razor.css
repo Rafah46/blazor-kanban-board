@@ -1,0 +1,19 @@
+﻿.draggable {
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    border: 1px solid #424d5c;    
+    background: royalblue;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+.dropzone {
+    padding: .75rem;
+    border: 1px solid darkgrey;
+    border-radius: 15px;    
+    min-height: 20rem;
+}

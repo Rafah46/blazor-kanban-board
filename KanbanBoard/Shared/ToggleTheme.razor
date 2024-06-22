@@ -1,0 +1,18 @@
+﻿<div class="theme-toggle-container form-switch">
+    <div>
+        <input class="form-check-input" type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+    </div>
+    <div>
+        <label class="form-check-label" for="themeSwitch">
+            Change Theme
+        </label>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.dataset.bsTheme = 
+            document.body.dataset.bsTheme == "light" ? "dark" : "light";
+    }    
+</script>
+
